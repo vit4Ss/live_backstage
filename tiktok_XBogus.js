@@ -2,13 +2,14 @@ md5 = require('md5')
 // 更换浏览器会导致canvas_id变化
 //let query_token = "msToken=J3RWabcbegNghkCL0YXAo6tXXCKro32Zt-eNG0cSewq1PvY0B_mEMJ9drWNavZDvaFbgmNv2XaL9QM60vyB9CinSBl5Qg35hfoZzhrUXsxuHK4P8Yll-0ILkWRF-9kXpPMT3Rg=="
 //let post_body = {"DisplayIDList":["newarnimaiya6","kotemarurun","user4853450601197","itshkvcsgww","yuuuuki_521","bts124jin","hinata._.bochi"]}
-UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
 let post_list = '\u0000\u0001\u0000'
 //referer = "https://live-backstage.tiktok.com/portal/"
 let short_str = "Dkdpgh4ZKsQB80/Mfvw36XI1R25-WUAlEi7NLboqYTOPuzmFjJnryx9HVGcaStCe=";
 let canvas = 2179632489
 
-
+// let timestamp = 1722326972
+// let timestamp2 = 1722326973
 for (var Ib = {}, Jb = "0123456789abcdef".split(""), Kb = [], Lb = [], i = 0; i < 256; i++)
     Kb[i] = Jb[i >> 4 & 15] + Jb[15 & i],
     i < 16 && (i < 10 ? Lb[48 + i] = i : Lb[87 + i] = i);
@@ -172,20 +173,15 @@ let step3_num = function (long_0b_to_num) {
     //可能有其他情况
 }
 
-let get_str6 = function (long_0b_to_num) {
-    if (((288 ^ long_0b_to_num) >>> 4) > 0) {
-        return 1073741824 ^ ((288 ^ long_0b_to_num) >>> 4)
-    }
-    if (((288 ^ long_0b_to_num) >>> 4) < 0) {
-        return -1073741824 ^ ((288 ^ long_0b_to_num) >>> 4)
-    }
+let get_str6 = function (long_0b_to_num,nn) {
+        return (nn<<28) ^ ((288 ^ long_0b_to_num) >>> 4)
 }
 let get_str2 = function (long_0b_to_num) {
     return ((long_0b_to_num ^ 4294967296) << 28) ^ 515
 }
 let get_signature = function (url_query, post_body, referer) {
     let timestamp2 = Math.floor(Date.now() / 1000);
-    //let timestamp2 = 1722199077
+    console.log(timestamp2)
     let ob_head = '10000000110000'
     let rf_time = rf(0, timestamp2.toString())
     let referer_noHead = referer.replace(/^https:\/\//, '');
@@ -209,7 +205,8 @@ let get_signature = function (url_query, post_body, referer) {
     let str3 = to_signature(step3_num(long_0b_to_num))
     let str4 = to_signature_signa((canvas ^ long_0b_to_num) & 63)
     let str5 = to_signature((((rf(rf_long_0b_to_num, UA) % 65521) << 16) ^ (rf(rf_long_0b_to_num, url_query) % 65521)) >> 2)
-    let str6 = to_signature(get_str6(long_0b_to_num))
+    let nn = (((rf(rf_long_0b_to_num, UA) % 65521) << 16) ^ (rf(rf_long_0b_to_num, url_query) % 65521))
+    let str6 = to_signature(get_str6(long_0b_to_num,nn))
     let str7 = to_signature(referer_mo)
     let signature = "_02B4Z6wo00001" + str1 + str2 + str3 + str4 + str5 + str6 + str7
     let signature_la2 = Number(to_en_post_body(0, signature)).toString(16).substring(6, 8)
@@ -242,8 +239,8 @@ let get_XBogus = function (query_token, post_body) {
     let decode_UA = decode(md5(btoa(ua_s(post_list, UA))))
 
     let timestamp = Math.floor(Date.now() / 1000);
+    console.log(timestamp)
 
-    //let timestamp = 1722199076
     let array = [64, 0.00390625, 1, 0,
         decode_query[14],
         decode_query[15],
@@ -263,13 +260,16 @@ let get_XBogus = function (query_token, post_body) {
     array.push(array.reduce(function (a, b) {
         return a ^ b;
     }))
+    console.log(array)
     return U8ArrayToXBogus(array)
 }
-// url = "https://live-backstage.tiktok.com/creators/live/union_platform_api/agency/union_invite/batch_check_anchor/?msToken=J3RWabcbegNghkCL0YXAo6tXXCKro32Zt-eNG0cSewq1PvY0B_mEMJ9drWNavZDvaFbgmNv2XaL9QM60vyB9CinSBl5Qg35hfoZzhrUXsxuHK4P8Yll-0ILkWRF-9kXpPMT3Rg=="
-// data = {
-//     "DisplayIDList": ["newarnimaiya6", "kotemarurun", "user4853450601197", "itshkvcsgww", "yuuuuki_521", "bts124jin",
-//                       "hinata._.bochi"]}
-// referer = 'https://live-backstage.tiktok.com/portal/'
-//
-// console.log(get_post_url(url,data,referer))
+url = "https://live-backstage.tiktok.com/creators/live/union_platform_api/agency/union_invite/batch_check_anchor/?msToken=XcR0ELo_8hIp3rnBhNN4OMCU8K5Kcx_HOJN8xAFYU551kfBm4Vusmjkn-gxYYx0gHGQxyYvN1FoXvcYOrwOgz0u8LyOhykGTWF4bYPMwLiU="
+data = {"DisplayIDList":["chiaki_romance","daiyaxxx","mieu.ngoan","linnmeozz","bigbang5_5n1c","trn.thin.9436","dongpc2405","maid_elvis"]}
+referer = 'https://live-backstage.tiktok.com/portal/'
 
+console.log(get_post_url(url,data,referer))
+//
+//
+// console.log(-391385990<<28)
+// // 42677^1722268062
+// console.log(-1610612736 ^ 201377853)

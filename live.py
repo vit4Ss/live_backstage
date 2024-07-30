@@ -1,11 +1,11 @@
-import time
-
-import execjs
-import requests
-import httpx
 import json
 
-url = "https://live-backstage.tiktok.com/creators/live/union_platform_api/agency/union_invite/batch_check_anchor/?msToken=XcR0ELo_8hIp3rnBhNN4OMCU8K5Kcx_HOJN8xAFYU551kfBm4Vusmjkn-gxYYx0gHGQxyYvN1FoXvcYOrwOgz0u8LyOhykGTWF4bYPMwLiU="
+import requests
+import httpx
+
+url = "https://live-backstage.tiktok.com/creators/live/union_platform_api/agency/union_invite/batch_check_anchor/?msToken=J4GpvmINfaEpaX8mzuYaGapgAb8y2uFZ0wX4iTJ08rDBYDAhwsF4aZk8naq24X-U9BypEtQYNel0fr5GC81ccm1MIysQ5i62BbPu0U2WWCuHvv_48S-BwEKXjS2JnjwAWVjrHA==&X-Bogus=DFSzswVLXF-j8vGEtv0SDXJ92U18&_signature=_02B4Z6wo00001EeC6AAAAIDCQCjdpCRNlUBHguyAAHdOdd"
+
+resUrl = "https://live-backstage.tiktok.com/creators/live/union_platform_api/agency/union_invite/batch_check_anchor/?msToken=uYp8e9aCxZ-Ix-mD80aQmGhucDU5YPtsAngV5YXtrLoefoLY--V1tQ0b4C-TEsiJjGT0vI-B0Oo2tHVFip0aL34hL4ob_oa6SGdTB8ImcojFoNUNP5cCIapByRLlVhZdF4X3uw==&X-Bogus=DFSzswVL8jPxukGEtv8d3hJ92U17&_signature=_02B4Z6wo00001wTLrjAAAIDBA2GblSlMKScEy6qAAKefb9"
 
 headers = {
     "accept": "application/json, text/plain, */*",
@@ -31,17 +31,25 @@ headers = {
     "x-secsdk-csrf-token": "000100000001f8c9c4faf619fb5d2af61e2d44b49e44b623309d45f80e93ee70f41dab5ec3d417e6b635990f895f"
 }
 
-data = {"DisplayIDList": ["chiaki_romance", "daiyaxxx", "mieu.ngoan", "linnmeozz", "bigbang5_5n1c", "trn.thin.9436",
-                          "dongpc2405", "maid_elvis"]}
+data = {"DisplayIDList": ["20tg01", "user1717918140309", "denden_kp", "16zozozo61", "tanariochan_", "chiaki_romance",
+                          "daiyaxxx", "mieu.ngoan", "linnmeozz", "bigbang5_5n1c", "trn.thin.9436", "dongpc2405",
+                          "maid_elvis", "n._r25"]}
 
-with open('tiktok_XBogus.js', 'r', encoding="utf-8") as f:
-    code = f.read()
-ctx = execjs.compile(code)
-res_url = ctx.call("get_post_url", url, data, headers['referer'])
-print(res_url)
+# with open('tiktok_XBogus.js', 'r', encoding="utf-8") as f:
+#     code = f.read()
+# ctx = execjs.compile(code,"node_modules")
+# res_url = ctx.call("get_post_url", url, data, headers['referer'])
+# print(res_url)
 
-with httpx.Client(verify=False) as client:
+# print(url)
+#
+# response = requests.post(url, headers=headers, json=data)
+#
+# print(response.text)
+json.dumps(data)
+get_url = "https://live-backstage.tiktok.com/creators/live/union_platform_api/agency/quota/get_broker_remain_quota/?AgencyID=103608&OperatorID=7391751617698104321&msToken=XcR0ELo_8hIp3rnBhNN4OMCU8K5Kcx_HOJN8xAFYU551kfBm4Vusmjkn-gxYYx0gHGQxyYvN1FoXvcYOrwOgz0u8LyOhykGTWF4bYPMwLiU=&X-Bogus=DFSzswVLnUKdUvGEtv0rchJ92U6q&_signature=_02B4Z6wo00001h3p0vAAAIDAGkPnVYlZq-Id6dZAAOHr7d"
+with httpx.Client(http2=True, verify=False, ) as client:
     # , cookies = cookies
-    response = client.post(res_url, headers=headers, json=data)
-    # print(response.json())
+    response = client.post(url, headers=headers, json=data)
+    #print(response.json())
     print(response.text)
