@@ -5,7 +5,10 @@ import requests
 import httpx
 import json
 
-url = "https://live-backstage.tiktok.com/creators/live/union_platform_api/agency/union_invite/batch_check_anchor/?msToken=XcR0ELo_8hIp3rnBhNN4OMCU8K5Kcx_HOJN8xAFYU551kfBm4Vusmjkn-gxYYx0gHGQxyYvN1FoXvcYOrwOgz0u8LyOhykGTWF4bYPMwLiU="
+import test
+import test2
+
+url = "https://live-backstage.tiktok.com/creators/live/union_platform_api/agency/union_invite/batch_check_anchor/?msToken=vPS72kEhLTbzCjWHogn4KorqSl4vC_QxouFHiVzoHxU4THVwEwXjSgK3FW7vKevjpAbWBs4oE90uHJaqNJuDpyP9Pu39pJfNsDl_bTplTQnVV74PTZsw6-oZqemQIULq4w4oNw=="
 
 headers = {
     "accept": "application/json, text/plain, */*",
@@ -31,8 +34,7 @@ headers = {
     "x-secsdk-csrf-token": "000100000001f8c9c4faf619fb5d2af61e2d44b49e44b623309d45f80e93ee70f41dab5ec3d417e6b635990f895f"
 }
 
-data = {"DisplayIDList": ["chiaki_romance", "daiyaxxx", "mieu.ngoan", "linnmeozz", "bigbang5_5n1c", "trn.thin.9436",
-                          "dongpc2405", "maid_elvis"]}
+data = {"DisplayIDList":["_j_devil","hothithoa.99","youten517","gotohkikuchi.510","ruukun001","ntk__kurusu","sinsin0523","uta_usagi","nanachan08082","yuyuzaw200","princessyurichama","mmm03101","empty.space98"]}
 
 with open('tiktok_XBogus.js', 'r', encoding="utf-8") as f:
     code = f.read()
@@ -45,3 +47,5 @@ with httpx.Client(verify=False) as client:
     response = client.post(res_url, headers=headers, json=data)
     # print(response.json())
     print(response.text)
+
+ 
