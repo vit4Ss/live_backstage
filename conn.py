@@ -5,10 +5,12 @@ conn_params = {
     "dbname": "tiktokmsg",
     "user": "postgres",
     "password": "!QAZ2wsx",
-    "host": "47.116.121.218",
+    "host": "185.18.222.93",
     "port": "54320"
 }
 
+#47.116.121.218
+#45.120.157.102
 
 def sqlInsert(insertSql, datas):
     conn = psycopg2.connect(**conn_params)
